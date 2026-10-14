@@ -1,0 +1,412 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SMS RAEED — توثيق الربط</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#f6f8fb; --card:#ffffff; --line:#e3e8ef; --ink:#0f172a; --muted:#5b6b82;
+    --brand:#0f5132; --primary:#1B5E20; --accent:#1565c0;
+    --ok:#2e7d32; --warn:#b26a00; --danger:#c62828;
+    --shadow:0 1px 3px rgba(16,24,40,.06), 0 8px 24px rgba(16,40,24,.06);
+    --radius:16px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: #f4f7f5; color: #14201a;
+    font-family: 'Cairo', system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif;
+    line-height: 1.75;
+  }
+  a { color: #1b5e20; }
+  header {
+    position: sticky; top: 0; z-index: 20;
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,.85);
+    border-bottom: 1px solid var(--radius);
+    border-bottom: 1px solid #e2ebe5;
+  }
+  nav {
+    max-width: 1120px; margin: 0 auto; padding: 12px 20px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+  .brand-badge {
+    background: linear-gradient(135deg,#1b5e20,#2e7d32); color: #fff;
+    padding: 6px 12px; border-radius: 999px; font-size: 13px; letter-spacing: .5px;
+  }
+  nav ul { display: flex; gap: 6px; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+  nav a {
+    text-decoration: none; color: #35463c; font-size: 14px; font-weight: 600;
+    padding: 6px 10px; border-radius: 9px;
+  }
+  nav a:hover { background: #e8f3ec; color: #1b5e20; }
+  main { max-width: 1120px; margin: 0 auto; padding: 0 20px 60px; }
+  .hero { padding: 44px 0 20px; }
+  .hero h1 { font-size: clamp(26px, 4vw, 40px); margin: 14px 0 12px; line-height: 1.3; color: #10331c; }
+  .badge-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .badge {
+    background: #e8f3ec; color: #1b5e20; border-radius: 999px;
+    padding: 4px 12px; font-size: 12px; font-weight: 700;
+  }
+  .badge-ok { background: #e3f2fd; color: #1565c0; }
+  .muted { color: #5b6f62; }
+  .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 22px 0 8px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg,#1b5e20,#2e7d32); color: #fff;
+    text-decoration: none; font-weight: 700; padding: 12px 20px; border-radius: 12px;
+    box-shadow: var(--shadow); border: 0; cursor: pointer; font-family: inherit; font-size: 15px;
+  }
+  .btn:hover { filter: brightness(1.06); }
+  .btn-ghost { background: #fff; color: #1b5e20; border: 1.5px solid #cfe3d6; }
+  .btn-ghost:hover { background: #eef6f1; }
+  .grid { display: grid; gap: 18px; margin: 18px 0; }
+  .grid-2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+  .card {
+    background: #fff; border: 1px solid #e4ece7; border-radius: 16px;
+    padding: 22px; box-shadow: 0 1px 2px rgba(20,40,25,.04), 0 10px 30px rgba(20,40,25,.05);
+    margin: 18px 0;
+  }
+  .card h2 { margin-top: 0; font-size: 20px; }
+  .card h3 { font-size: 16px; margin: 0 0 4px; }
+  .muted { color: #6b7d72; }
+  .steps { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+  .steps > li {
+    position: relative; padding: 0 46px 18px 0; border-right: 2px dashed #d6e6dc; margin-right: 16px;
+  }
+  .steps > li:last-child { border-right: 0; }
+  .steps > li::before {
+    counter-increment: s; content: counter(s);
+    position: absolute; right: -17px; top: 0; width: 34px; height: 34px; border-radius: 50%;
+    background: #1b5e20; color: #fff; display: grid; place-items: center; font-weight: 700;
+  }
+  .list { margin: 0; padding-right: 20px; }
+  .list li { margin-bottom: 8px; }
+  code.inline, code {
+    background: #eef3f0; color: #14532d; padding: 2px 7px; border-radius: 7px;
+    font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; direction: ltr; display: inline-block;
+  }
+  pre {
+    background: #0f1a14; color: #d7f0e0; padding: 16px 18px; border-radius: 14px;
+    overflow-x: auto; direction: ltr; text-align: left; font-size: 13px; line-height: 1.6;
+    border: 1px solid #1c2f24;
+  }
+  pre code { background: transparent; color: inherit; padding: 0; }
+  .callout {
+    border-radius: 14px; padding: 14px 16px; margin: 14px 0; border: 1px solid #d9e7df;
+    background: #f3f9f5; display: flex; flex-direction: column; gap: 4px;
+  }
+  .callout strong { font-size: 14px; }
+  .callout span { font-size: 13.5px; color: #40584a; }
+  .callout-danger { background: #fdf1f1; border-color: #f3cccc; }
+  .callout-danger strong { color: #b3261e; }
+  .callout-warn { background: #fff7e8; border-color: #f2dfb0; }
+  .callout-warn strong { color: #996100; }
+  .callout-ok { background: #eefaf0; border-color: #cbe8d2; }
+  .callout-ok strong { color: #1b5e20; }
+  .table-wrapper { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: right; padding: 10px 12px; border-bottom: 1px solid #e8efeb; }
+  th { background: #f3f8f5; font-size: 13px; }
+  .file-item { border: 1px solid #e4ece7; border-radius: 14px; padding: 16px; margin: 10px 0; }
+  .file-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .file-meta > div { flex: 1; min-width: 200px; }
+  .file-meta h3 { margin: 0; }
+  .chip { background: #eef6f1; color: #1b5e20; font-size: 12px; padding: 4px 10px; border-radius: 999px; font-weight: 600; }
+  .download-link {
+    text-decoration: none; background: #1b5e20; color: #fff; padding: 9px 16px; border-radius: 10px;
+    font-weight: 600; font-size: 14px; white-space: nowrap;
+  }
+  .download-link:hover { filter: brightness(1.06); }
+  .anchor { scroll-margin-top: 90px; }
+  footer.footer {
+    text-align: center; color: #6b7d72; font-size: 13px; padding: 24px; border-top: 1px solid #e2ebe5;
+  }
+  .pill { display:inline-block; padding:2px 10px; border-radius:999px; font-size:12px; font-weight:700; }
+  .pill-pending { background:#fff3d6; color:#916100; }
+  .pill-success { background:#d9f2df; color:#1b5e20; }
+  .pill-failed { background:#fbe0df; color:#b3261e; }
+  .flow {
+    display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:center;
+    margin: 8px 0 0;
+  }
+  .flow .node { background:#eef6f1; border:1px solid #cfe3d6; border-radius:12px; padding:8px 14px; font-weight:600; font-size:13.5px; }
+  .flow .arrow { color:#7ba389; font-weight:700; }
+</style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="brand">
+        <span class="brand-badge">SMS RAEED</span>
+        <span class="muted">ربط شحن المحافظ مع موقعك</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#intro">مقدمة</a></li>
+        <li><a href="#how">كيف تعمل</a></li>
+        <li><a href="#requirements">ما تحصل عليه</a></li>
+        <li><a href="#steps">خطوات الربط</a></li>
+        <li><a href="#app">تطبيق المنصة</a></li>
+        <li><a href="#api">ربط موقعك (JSON)</a></li>
+        <li><a href="#files">الملفات</a></li>
+        <li><a href="#rules">قواعد مهمة</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" id="intro">
+      <div class="hero-content">
+        <div class="badge-row">
+          <span class="badge">توثيق مبسّط</span>
+          <span class="badge badge-ok">جاهز للتطبيق مباشرة</span>
+        </div>
+        <h1>منصة SMS RAEED — توثيق الربط الكامل</h1>
+        <p class="muted">
+          منصة تربط رسائل شحن المحافظ بين هاتف المتجر وموقع المتجر الإلكتروني.
+          يقرأ تطبيق المنصة رسائل الشحن تلقائياً من هاتف المتجر، ويرسلها بصيغة
+          <code class="inline">JSON</code> إلى المنصة. وموقعك يرسل تفاصيل الطلب بصيغة
+          <code class="inline">JSON</code> أيضاً، فتقوم المنصة بالمطابقة بينهما وإرجاع نتيجة
+          <code class="inline">نجاح/فشل</code> بصيغة <code class="inline">JSON</code> واضحة.
+        </p>
+        <div class="actions">
+          <a class="btn" href="#steps">ابدأ خطوات الربط</a>
+          <a class="btn btn-ghost" href="#app">تحميل تطبيق المنصة</a>
+        </div>
+        <div class="callout callout-danger">
+          <strong>تنبيه هام</strong>
+          <span>كل عملية بيع تتم عبر هذه المنصة هي مسؤولية المتجر نفسه. إذا لم يربط موقعه بالشكل المطلوب أو لم يتبع طريقة الربط الصحيحة، فالمسؤولية تقع عليه بالكامل.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid grid-2">
+      <article class="card anchor" id="how">
+        <h2>كيف تعمل المنصة؟</h2>
+        <ul class="steps">
+          <li>
+            <div>
+              <h3>1. قراءة الرسائل في هاتف المتجر</h3>
+              <p class="muted">بعد تسجيل توكن الجهاز، يقرأ التطبيق رسائل الشحن المناسبة للشركات التي أضفتها، ويستخرج المبلغ والمرسل والمستقبل والشركة، ويُنشئ بصمة <code class="inline">message_hash</code> لمنع التكرار.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>2. إرسالها للمنصة بصيغة JSON</h3>
+              <p class="muted">يرسل التطبيق الرسالة إلى دالة <code class="inline">store_sms</code> مع توكن الجهاز، فتتحقق المنصة من التوكن ثم تسجّل الرسالة وتبدأ المطابقة.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>3. إرسال طلبك من موقعك بصيغة JSON</h3>
+              <p class="muted">عند وصول طلب للعميل، يرسل موقعك تفاصيل الطلب (المبلغ، رقم المرسل، رقم المستقبل، الشركة) إلى نقطة <code class="inline">site_order</code> بصيغة JSON.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>4. المطابقة والنتيجة</h3>
+              <p class="muted">تقارن المنصة رسالة الشحن بالطلب، وتُرجع لموقعك نتيجة JSON بالحالة <span class="pill pill-pending">pending</span> <span class="pill pill-success">success</span> <span class="pill pill-failed">failed</span> ليكمل الطلب أو يوقفه.</p>
+            </div>
+          </li>
+        </ul>
+        <div class="flow">
+          <span class="node">تطبيق الهاتف</span><span class="arrow">←</span>
+          <span class="node">المنصة</span><span class="arrow">→</span>
+          <span class="node">موقعك</span>
+        </div>
+      </article>
+      <article class="card anchor" id="requirements">
+        <h2>ما تحصل عليه من مسؤول المنصة</h2>
+        <ul class="list">
+          <li><strong>مفتاح API للموقع:</strong> يصدره مسؤول المنصة ويُستخدم للتواصل بين موقعك والمنصة (سرّي، للسيرفر فقط).</li>
+          <li><strong>توكن جهاز:</strong> يصدره مسؤول المنصة وتلصقه داخل تطبيق الهاتف.</li>
+          <li><strong>تسجيل أرقام محافظك:</strong> تُسجَّل أرقام المحافظ التي تستقبل عليها الشحن حتى تتم المطابقة.</li>
+          <li><strong>هاتف متجر:</strong> مثبّت عليه تطبيق SMS RAEED مع صلاحية قراءة الرسائل.</li>
+        </ul>
+        <div class="callout callout-warn">
+          <strong>مهم</strong>
+          <span>لا تُنشئ المفاتيح بنفسك — مفتاح API وتوكن الجهاز يصدرهما مسؤول المنصة لك. راسل المسؤول لتزويدك بهما وبأرقام محافظك.</span>
+        </div>
+        <div class="callout callout-ok">
+          <strong>نصيحة أمنية</strong>
+          <span>لا تضع مفتاح API أبداً داخل كود الواجهة (Frontend). أجرِ كل الاتصالات من خادم موقعك (Backend) فقط.</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="card anchor" id="steps">
+      <h2>خطوات الربط خطوة بخطوة</h2>
+      <ol class="steps">
+        <li>
+          <div>
+            <h3>الخطوة 1: طلب الربط من مسؤول المنصة</h3>
+            <p class="muted">راسل مسؤول المنصة وزوّده باسم متجرك، رابط موقعك، وبريدك. سيصدر لك <strong>مفتاح API للموقع</strong> و<strong>توكن جهاز</strong>، ويسجّل أرقام محافظك.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>الخطوة 2: تفعيل تطبيق SMS RAEED على الهاتف</h3>
+            <p class="muted">حمّل ملف APK من قسم <a href="#app">تطبيق المنصة</a>، ثبّته على هاتف المتجر، الصق <strong>توكن الجهاز</strong> في الإعدادات واحفظ. سيبدأ التطبيق بقراءة الرسائل تلقائياً في الخلفية.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>الخطوة 3: ضبط الشركات وصيغ رسائلها</h3>
+            <p class="muted">من إعدادات التطبيق يمكنك تفعيل/تعطيل كل شركة، وإضافة شركات جديدة، وضبط رقم المحفظة وصيغة رسالة كل شركة (مع دعم أكثر من صيغة لكل شركة).</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>الخطوة 4: ربط موقعك بالكود</h3>
+            <p class="muted">من خادم موقعك، أرسل تفاصيل كل طلب إلى نقطة <code class="inline">site_order</code> بصيغة JSON، ثم راقب الحالة حتى تصبح <code class="inline">success</code> قبل إكمال الطلب مع العميل.</p>
+          </div>
+        </li>
+      </ol>
+      <div class="callout">
+        <strong>فكرة الربط ببساطة</strong>
+        <span>موقعك يُنشئ طلباً (JSON) → التطبيق يلتقط رسالة الشحن → المنصة تطابق الاثنين → موقعك يقرأ النتيجة (JSON) ويكمل الطلب.</span>
+      </div>
+    </section>
+
+    <section class="grid grid-2">
+      <article class="card anchor" id="app">
+        <h2>تطبيق المنصة (SMS RAEED APK)</h2>
+        <div class="file-item">
+          <div class="file-meta">
+            <div>
+              <h3>smsraed-latest.apk</h3>
+              <p class="muted">أحدث إصدار جاهز للتثبيت والربط بتوكن الجهاز</p>
+            </div>
+            <span class="chip">Android 7.0+ (minSdk 24)</span>
+            <a class="download-link" href="https://txguibjkbtroljtvbrlt.supabase.co/storage/v1/object/public/docs/smsraed-latest.apk?v=20261014" download>⬇️ تحميل التطبيق</a>
+          </div>
+          <div class="callout callout-ok">
+            <strong>يحتاج صلاحية</strong>
+            <span>قراءة رسائل SMS — يستخدمها التطبيق لقراءة رسائل شحن المحافظ فقط.</span>
+          </div>
+        </div>
+        <h3>أهم مميزات التطبيق</h3>
+        <ul class="list">
+          <li><strong>شركات قابلة للتخصيص:</strong> ليبيانا والمدار جاهزان، ويمكنك إضافة أي شركة أخرى.</li>
+          <li><strong>تفعيل/تعطيل لكل شركة:</strong> أوقف قراءة رسائل أي شركة دون حذفها.</li>
+          <li><strong>صيغ رسائل مرنة:</strong> لكل شركة صيغتها الخاصة باستخدام <code class="inline">{amount}</code> للمبلغ و<code class="inline">{sender}</code> للمرسل، ويمكن كتابة أكثر من صيغة في أسطر منفصلة.</li>
+          <li><strong>يعمل عند انقطاع الإنترنت:</strong> يحفظ الرسائل محلياً ويرفعها تلقائياً عند العودة.</li>
+          <li><strong>واجهة عربية حديثة:</strong> وضع فاتح/داكن، مزامنة السجل، وتبويب اختبار التحليل.</li>
+        </ul>
+      </article>
+      <article class="card anchor" id="api">
+        <h2>ربط موقعك (JSON ←→ JSON)</h2>
+        <p class="muted">أرسل طلباً إلى المنصة واستعلم عن حالته. استخدمه من خادم موقعك فقط.</p>
+        <h3 style="margin-top:14px;">1) إنشاء/تأكيد طلب</h3>
+        <pre><code>POST https://txguibjkbtroljtvbrlt.supabase.co/functions/v1/site_order
+Content-Type: application/json
+
+{
+  "api_key": "SITE_API_KEY",
+  "order_id": "ORDER-123",
+  "company": "libyana",
+  "sender_phone": "0912345678",
+  "receiver_phone": "0922222222",
+  "amount": 50,
+  "currency": "LYD"
+}</code></pre>
+        <h3>الرد</h3>
+        <pre><code>{
+  "ok": true,
+  "order_id": "ORDER-123",
+  "status": "pending",
+  "recharge_transaction_id": "uuid..."
+}</code></pre>
+        <h3 style="margin-top:14px;">2) الاستعلام عن الحالة</h3>
+        <pre><code>GET https://txguibjkbtroljtvbrlt.supabase.co/functions/v1/site_order
+    ?api_key=SITE_API_KEY&order_id=ORDER-123
+
+# status: pending | success | failed | cancelled | needs_review</code></pre>
+        <h3 style="margin-top:14px;">مثال من خادمك (Node.js)</h3>
+        <pre><code>const BASE = "https://txguibjkbtroljtvbrlt.supabase.co/functions/v1/site_order";
+const KEY = process.env.SITE_API_KEY;
+
+async function submitOrder(order) {
+  const res = await fetch(BASE, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ...order, api_key: KEY }),
+  });
+  return res.json();
+}
+
+async function getStatus(orderId) {
+  const res = await fetch(`${BASE}?api_key=${KEY}&order_id=${orderId}`);
+  return res.json();
+}
+
+// مثال الاستخدام
+const created = await submitOrder({
+  order_id: "ORDER-123",
+  company: "libyana",
+  sender_phone: "0912345678",
+  receiver_phone: "0922222222",
+  amount: 50,
+  currency: "LYD",
+});
+if (created.ok &amp;&amp; created.status === "pending") {
+  // تابع الاستعلام حتى تصبح success أو failed
+}</code></pre>
+        <div class="callout">
+          <strong>ملاحظة</strong>
+          <span>اسم الشركة يجب أن يطابق الاسم الذي سجّلته في التطبيق والمنصة (غير حساس لحالة الأحرف). راقب الحالة حتى تحسم قبل تسليم الطلب.</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid grid-2">
+      <article class="card anchor" id="files">
+        <h2>قسم الملفات</h2>
+        <div class="files-card">
+          <div class="file-item">
+            <div class="file-meta">
+              <div>
+                <h3>smsraed-latest.apk</h3>
+                <p class="muted">تطبيق Android جاهز للربط والتشغيل</p>
+              </div>
+              <a class="download-link" href="https://txguibjkbtroljtvbrlt.supabase.co/storage/v1/object/public/docs/smsraed-latest.apk?v=20261014" download>تحميل APK</a>
+            </div>
+          </div>
+          <div class="file-item">
+            <div class="file-meta">
+              <div>
+                <h3>PLATFORM_DOCS_AR.md</h3>
+                <p class="muted">نسخة نصية (Markdown) من نفس التوثيق</p>
+              </div>
+              <a class="download-link" href="https://txguibjkbtroljtvbrlt.supabase.co/storage/v1/object/public/docs/PLATFORM_DOCS_AR.md" download>تحميل MD</a>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="card anchor" id="rules">
+        <h2>قواعد مهمة يجب الالتزام بها</h2>
+        <ul class="list">
+          <li><strong>الأمان:</strong> لا تضع مفتاح API في كود الواجهة (Frontend) أبداً.</li>
+          <li><strong>السرية:</strong> توكن الجهاز خاص بالجهاز ولا يُشارك مع أي شخص.</li>
+          <li><strong>المسؤولية:</strong> ربط الطلبات بالشكل الصحيح مسؤولية المتجر بالكامل.</li>
+          <li><strong>عدم الحذف:</strong> لا تحذف سجلات <code class="inline">recharge_transactions</code> أو <code class="inline">sms_transactions</code> تحت أي ظرف.</li>
+          <li><strong>المطابقة:</strong> يعتمد الربط على تطابق رقم المستقبل مع أحد محافظك + الشركة + المبلغ قدر الإمكان.</li>
+          <li><strong>الشركات المخصّصة:</strong> يمكنك استخدام أي اسم شركة (عربي أو إنجليزي) بشرط توحيده في التطبيق والمنصة.</li>
+          <li><strong>التوكنات:</strong> عند فقدان الهاتف أو تغييره، اطلب إبطال التوكن القديم وإصدار توكن جديد من مسؤول المنصة.</li>
+        </ul>
+        <div class="callout callout-warn">
+          <strong>تنبيه</strong>
+          <span>إذا لم يُربط موقعك بالشكل المطلوب أو أُهمل ربط الطلب بالمعاملة بشكل صحيح، فكل عملية بيع تتم عبر المنصة هي مسؤولية المتجر نفسه.</span>
+        </div>
+      </article>
+    </section>
+  </main>
+  <footer class="footer">
+    <p>SMS RAEED | توثيق مبسّط لسهولة الربط | آخر تحديث: 2026-10-14</p>
+  </footer>
+</body>
+</html>
